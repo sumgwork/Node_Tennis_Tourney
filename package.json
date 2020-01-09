@@ -1,0 +1,16 @@
+{
+  "name": "dius_tennis_tourney",
+  "version": "1.0.0",
+  "description": "Tennis Tournament Scorekeeping Program for DiUS",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "nodemon index.js"
+  },
+  "author": "Sumit Govil",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^24.9.0",
+    "nodemon": "^2.0.2"
+  }
+}
