@@ -178,8 +178,6 @@ try {
   pointWonBy("Roger");
   pointWonBy("Roger");
   score();
-  // pointWonBy("Roger");
-  // score();
 } catch (error) {
   console.log(error.message);
 }

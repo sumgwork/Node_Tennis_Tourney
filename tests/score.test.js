@@ -39,7 +39,7 @@ describe("Score", () => {
       expect(score).toBe(
         `Players: \tplayer1\tplayer2 \n GAMES \t\t0\t0 \n POINTS \t${prettyPrintPoints(
           getPoints(mockState.points)
-        )}`
+        )}\n`
       );
     });
   });

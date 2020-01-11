@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "start": "nodemon index.js"
+    "start": "node index.js"
   },
   "jest": {
     "verbose": true,
@@ -17,7 +17,6 @@
   "author": "Sumit Govil",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^24.9.0",
-    "nodemon": "^2.0.2"
+    "jest": "^24.9.0"
   }
 }

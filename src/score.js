@@ -8,7 +8,7 @@ const getScore = () => {
 
   return `Players: \t${player1}\t${player2} \n GAMES \t\t${games[player1]}\t${
     games[player2]
-  } \n POINTS \t${prettyPrintPoints(getPoints(points))}`;
+  } \n POINTS \t${prettyPrintPoints(getPoints(points))}\n`;
 };
 
 const getPoints = points => {
