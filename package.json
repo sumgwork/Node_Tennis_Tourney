@@ -4,7 +4,7 @@
   "description": "Tennis Tournament Scorekeeping Program for DiUS",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest -o --coverage --verbose",
     "start": "nodemon index.js"
   },
   "author": "Sumit Govil",

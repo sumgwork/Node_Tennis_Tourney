@@ -117,9 +117,7 @@ describe("Helper Functions", () => {
     beforeEach(() => {
       // create a function into global context for Jest
       global.console = {
-        log: jest.fn(),
-        info: jest.fn(),
-        error: jest.fn()
+        log: jest.fn()
       };
     });
     const mockMessage = "mock message";
