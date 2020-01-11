@@ -1,5 +1,5 @@
 const { actions } = require("./src/gameActions");
-const score = require("./src/score");
+const { score } = require("./src/score");
 
 const { pointWonBy, startGame } = actions;
 try {

@@ -6,15 +6,14 @@ const getScore = () => {
   const { points, players, games } = state;
   const [player1, player2] = players;
 
-  const getPointsFn = getPoints(players);
   return `Players: \t${player1}\t${player2} \n GAMES \t\t${games[player1]}\t${
     games[player2]
-  } \n POINTS \t${prettyPrintPoints(getPointsFn(points))}`;
+  } \n POINTS \t${prettyPrintPoints(getPoints(points))}`;
 };
 
-const getPoints = players => points => {
+const getPoints = points => {
   const gameState = getState();
-
+  const { players } = gameState;
   switch (isTieBreak(gameState)) {
     case true:
       // Tie break, return points as such
@@ -41,7 +40,7 @@ const getPoints = players => points => {
   }
 };
 
-prettyPrintPoints = ({ points, isDuece }) => {
+const prettyPrintPoints = ({ points, isDuece }) => {
   if (isDuece) {
     if (points[0] === points[1]) {
       return "   DUECE   ";
@@ -55,4 +54,5 @@ prettyPrintPoints = ({ points, isDuece }) => {
 
 const score = () => console.log(getScore());
 
-module.exports = score;
+module.exports = { score, getScore, getPoints, prettyPrintPoints };
+//getScore, getPoints, prettyPrintPoints have been exported for testing purposes only
