@@ -107,7 +107,6 @@ describe("Helper Functions", () => {
 
     // Test if it doesn't match condition
     it("should return false in case of a no-match", () => {
-      let games = { player1: 3, player2: 3 };
       const check = checkCondition(points, 4);
       expect(check).not.toBeTruthy();
     });
