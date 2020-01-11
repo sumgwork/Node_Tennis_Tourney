@@ -5,7 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "test:coverage": "jest --coverage",
     "start": "nodemon index.js"
+  },
+  "jest": {
+    "verbose": true,
+    "watchPathIgnorePatterns": [
+      "node_modules"
+    ]
   },
   "author": "Sumit Govil",
   "license": "ISC",

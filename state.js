@@ -28,5 +28,7 @@ const changeState = newState => (state = { ...state, ...newState });
 module.exports = {
   getState,
   changeState,
-  resetGameState
+  resetGameState,
+  initialGameState
 };
+// initialGameState is exported for testing purposes only
