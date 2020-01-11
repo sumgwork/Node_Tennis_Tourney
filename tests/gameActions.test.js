@@ -1,5 +1,5 @@
-const { getState, changeState, initialGameState } = require("../state");
-const { actions } = require("../gameActions");
+const { getState, changeState, initialGameState } = require("../src/state");
+const { actions } = require("../src/gameActions");
 
 const mockState = {
   games: { Roger: 0, Rafael: 0 },

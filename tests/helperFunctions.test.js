@@ -4,7 +4,7 @@ const {
   checkCondition,
   isTieBreak,
   prettyPrint
-} = require("../helperFunctions");
+} = require("../src/helperFunctions");
 
 const points = { player1: 0, player2: 0 };
 const games = { player1: 0, player2: 0 };

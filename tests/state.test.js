@@ -1,4 +1,4 @@
-const { getState, changeState, resetGameState } = require("../state");
+const { getState, changeState, resetGameState } = require("../src/state");
 
 const mockState = {
   games: { player1: 0, player2: 0 },
