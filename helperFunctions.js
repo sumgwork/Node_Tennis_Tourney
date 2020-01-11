@@ -34,9 +34,11 @@ const checkCondition = (units, value) =>
 
 // Just prints message in a block
 const prettyPrint = message => {
-  console.log("\n----------");
-  console.log(message);
-  console.log("----------\n");
+  if (message) {
+    console.log("\n----------");
+    console.log(message);
+    console.log("----------\n");
+  }
 };
 
 module.exports = {

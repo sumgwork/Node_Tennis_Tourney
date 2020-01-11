@@ -2,7 +2,8 @@ const {
   isGameWon,
   isMatchFinished,
   checkCondition,
-  isTieBreak
+  isTieBreak,
+  prettyPrint
 } = require("../helperFunctions");
 
 const points = { player1: 0, player2: 0 };
@@ -60,6 +61,17 @@ describe("Helper Functions", () => {
       const check = isGameWon(gameState);
       expect(check).not.toBeTruthy();
     });
+
+    // Test if the game is won after a tiebreak
+    it("should return true if the game is won following a tie-breaker", () => {
+      gameState = {
+        ...gameState,
+        points: { player1: 4, player2: 7 },
+        games: { player1: 6, player2: 6 }
+      };
+      const check = isGameWon(gameState);
+      expect(check).toBeTruthy();
+    });
   });
 
   describe("isMatchFinished", () => {
@@ -98,6 +110,30 @@ describe("Helper Functions", () => {
       let games = { player1: 3, player2: 3 };
       const check = checkCondition(points, 4);
       expect(check).not.toBeTruthy();
+    });
+  });
+
+  describe("prettyPrint", () => {
+    beforeEach(() => {
+      // create a function into global context for Jest
+      global.console = {
+        log: jest.fn(),
+        info: jest.fn(),
+        error: jest.fn()
+      };
+    });
+    const mockMessage = "mock message";
+    it("should call console.log thrice when passed a message", () => {
+      prettyPrint(mockMessage);
+      expect(global.console.log.mock.calls.length).toBe(3);
+    });
+    it("should ensure that first argument to second call of console.log contains the message", () => {
+      prettyPrint(mockMessage);
+      expect(global.console.log.mock.calls[1][0]).toBe(mockMessage);
+    });
+    it("should not call any console.log statement if no message is passed", () => {
+      prettyPrint();
+      expect(global.console.log.mock.calls.length).toBe(0);
     });
   });
 });
