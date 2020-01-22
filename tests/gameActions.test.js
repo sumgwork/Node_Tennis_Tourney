@@ -33,6 +33,7 @@ describe("gameActions", () => {
     beforeEach(() => {
       changeState({ ...mockState });
     });
+
     //Test if there is already a winner, the function call shall throw an exception
     it("should throw an error if a winner is already announced", () => {
       const winner = "mockPlayer";
@@ -74,9 +75,9 @@ describe("gameActions", () => {
       });
       pointWonBy(mockState.players[0]);
       const newState = getState();
-      expect(Object.values(getState().games)[0]).toBe(0);
-      expect(Object.values(getState().points)[0]).toBe(3);
-      expect(Object.values(getState().points)[1]).toBe(3);
+      expect(Object.values(newState.games)[0]).toBe(0);
+      expect(Object.values(newState.points)[0]).toBe(3);
+      expect(Object.values(newState.points)[1]).toBe(3);
     });
 
     // Give advantage to the player who won the point if the other player is at advantage at duece
@@ -87,8 +88,8 @@ describe("gameActions", () => {
       });
       pointWonBy(mockState.players[0]);
       const newState = getState();
-      expect(Object.values(getState().points)[0]).toBe(4);
-      expect(Object.values(getState().points)[1]).toBe(3);
+      expect(Object.values(newState.points)[0]).toBe(4);
+      expect(Object.values(newState.points)[1]).toBe(3);
     });
 
     // Award the game to the player if she was at advantage in duece situation

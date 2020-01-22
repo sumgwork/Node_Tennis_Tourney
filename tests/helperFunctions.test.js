@@ -3,7 +3,11 @@ const {
   isMatchFinished,
   checkCondition,
   isTieBreak,
-  prettyPrint
+  prettyPrint,
+  incrementGamePoint,
+  incrementGameCount,
+  checkMatchFinishedStatus,
+  pipe
 } = require("../src/helperFunctions");
 
 const points = { player1: 0, player2: 0 };
@@ -131,6 +135,122 @@ describe("Helper Functions", () => {
     it("should not call any console.log statement if no message is passed", () => {
       prettyPrint();
       expect(global.console.log.mock.calls.length).toBe(0);
+    });
+  });
+
+  describe("incrementGamePoint", () => {
+    let incrementGamePointFn = null;
+
+    beforeEach(() => {
+      incrementGamePointFn = incrementGamePoint("player1");
+    });
+
+    //Test if there is already a winner, the function call shall throw an exception
+    it("should throw an error if there is already a winner announced", () => {
+      const winner = "player1";
+      gameState = {
+        ...gameState,
+        winner
+      };
+      try {
+        incrementGamePointFn(gameState);
+        // If above statement doesn't throw an exception, fail the test case
+        expect(false).toBe(true);
+      } catch (error) {
+        expect(error.message).toBe(`Match already won by ${winner}`);
+      }
+    });
+
+    // Award a point to the player who won the point
+    it("should award a point to the player who won the point", () => {
+      const newState = incrementGamePointFn(gameState);
+      expect(Object.values(newState.points)[0]).toBe(1);
+    });
+  });
+
+  describe("incrementGameCount", () => {
+    let incrementGameCountFn = null;
+
+    beforeEach(() => {
+      incrementGameCountFn = incrementGameCount("player1");
+    });
+
+    // Award a game to the player who won the point if the player is on game point
+    it("should award a game to the player who won the point if the player is on game point", () => {
+      gameState = {
+        ...gameState,
+        points: { [gameState.players[0]]: 4, [gameState.players[1]]: 2 }
+      };
+      const newState = incrementGameCountFn(gameState);
+      expect(Object.values(newState.games)[0]).toBe(1);
+    });
+
+    it("should return the same state if the game is not won", () => {
+      gameState = {
+        ...gameState,
+        points: { [gameState.players[0]]: 3, [gameState.players[1]]: 2 }
+      };
+      const newState = incrementGameCountFn(gameState);
+      expect(newState).toEqual(gameState);
+    });
+  });
+
+  describe("checkMatchFinishedStatus", () => {
+    let checkMatchFinishedStatusFn = null;
+
+    beforeEach(() => {
+      checkMatchFinishedStatusFn = checkMatchFinishedStatus("player1");
+    });
+
+    // Award the match to the player if the player is on match point
+    it("should award the match to the player if the player is on match point", () => {
+      gameState = {
+        ...gameState,
+        points: { [gameState.players[0]]: 0, [gameState.players[1]]: 0 },
+        games: { [gameState.players[0]]: 6, [gameState.players[1]]: 4 }
+      };
+      const newState = checkMatchFinishedStatusFn(gameState);
+      expect(Object.values(newState.games)[0]).toBe(6);
+      expect(newState.winner).toBe(gameState.players[0]);
+    });
+
+    it("should return the same state if the match is not won", () => {
+      gameState = {
+        ...gameState,
+        points: { [gameState.players[0]]: 3, [gameState.players[1]]: 2 },
+        games: { [gameState.players[0]]: 6, [gameState.players[1]]: 5 }
+      };
+      const newState = checkMatchFinishedStatusFn(gameState);
+      expect(newState).toEqual(gameState);
+    });
+  });
+
+  describe("pipe", () => {
+    const mockFn1 = jest.fn(val => val + 1);
+    const mockFn2 = jest.fn(val => val + 1);
+    const mockFn3 = jest.fn(val => val + 1);
+
+    const input = 0;
+    let output = null;
+
+    beforeEach(() => {
+      output = pipe(mockFn1, mockFn2, mockFn3)(input);
+    });
+
+    it("should call function 1 with given input", () => {
+      expect(mockFn1).toHaveBeenCalledWith(0);
+    });
+
+    it("should call function 2 with output of function 1", () => {
+      expect(mockFn2).toHaveBeenCalledWith(1);
+    });
+
+    it("should call function 3 with output of function 2", () => {
+      expect(mockFn3).toHaveBeenCalledWith(2);
+    });
+
+    it("should pipe functions together", () => {
+      expect(output).toBe(3);
     });
   });
 });
