@@ -51,7 +51,7 @@ A separate scoring utility is used to calculate and show the score to the users 
 
 **100% coverage** as depicted in the following report:
 
-![Test Coverage Report](https://i.ibb.co/rfCsCS0/test-coverage-report.png)
+![Test Coverage Report](https://i.ibb.co/XyDsSdw/code-coverage.png)
 
 ## Continuous Integration
 
@@ -68,6 +68,8 @@ All commits are validated for test case execution with CircleCI framework.
 > Helper functions are a collection of pure functions aiding to the solution.
 
 > Tried simulating a redux like pattern where the program state is managed at one place and can be updated only through an incremental method.
+
+> Concepts like pipe (or compose) and closure implemented in some helper functions
 
 ## What's not been covered / What can be improved
 
