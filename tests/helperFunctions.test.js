@@ -6,7 +6,8 @@ const {
   prettyPrint,
   incrementGamePoint,
   incrementGameCount,
-  checkMatchFinishedStatus
+  checkMatchFinishedStatus,
+  pipe
 } = require("../src/helperFunctions");
 
 const points = { player1: 0, player2: 0 };
@@ -221,6 +222,35 @@ describe("Helper Functions", () => {
       };
       const newState = checkMatchFinishedStatusFn(gameState);
       expect(newState).toEqual(gameState);
+    });
+  });
+
+  describe("pipe", () => {
+    const mockFn1 = jest.fn(val => val + 1);
+    const mockFn2 = jest.fn(val => val + 1);
+    const mockFn3 = jest.fn(val => val + 1);
+
+    const input = 0;
+    let output = null;
+
+    beforeEach(() => {
+      output = pipe(mockFn1, mockFn2, mockFn3)(input);
+    });
+
+    it("should call function 1 with given input", () => {
+      expect(mockFn1).toHaveBeenCalledWith(0);
+    });
+
+    it("should call function 2 with output of function 1", () => {
+      expect(mockFn2).toHaveBeenCalledWith(1);
+    });
+
+    it("should call function 3 with output of function 2", () => {
+      expect(mockFn3).toHaveBeenCalledWith(2);
+    });
+
+    it("should pipe functions together", () => {
+      expect(output).toBe(3);
     });
   });
 });
