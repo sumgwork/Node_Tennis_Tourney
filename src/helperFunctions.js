@@ -41,11 +41,52 @@ const prettyPrint = message => {
   }
 };
 
+// increment game point
+const incrementGamePoint = player => gameState => {
+  const { winner } = gameState;
+  if (winner) {
+    //game completed
+    throw new Error(`Match already won by ${winner}`);
+  }
+  return {
+    ...gameState,
+    points: { ...gameState.points, [player]: gameState.points[player] + 1 }
+  };
+};
+
+// Award the game to player and reset points to 0,0 if game is won by the player
+const incrementGameCount = player => gameState => {
+  if (isGameWon(gameState)) {
+    // prettyPrint(`Game won by ${player}`);
+    const players = gameState.players;
+    return {
+      ...gameState,
+      points: { [players[0]]: 0, [players[1]]: 0 },
+      games: { ...gameState.games, [player]: gameState.games[player] + 1 }
+    };
+  }
+  return gameState;
+};
+
+const checkMatchFinishedStatus = player => gameState => {
+  if (isMatchFinished(gameState)) {
+    prettyPrint(`GAME SET & MATCH ${player}`);
+    return { ...gameState, winner: player };
+  }
+  return gameState;
+};
+
+const pipe = (...ops) => ops.reduce((a, b) => arg => b(a(arg)));
+
 module.exports = {
   isGameWon,
   isMatchFinished,
   prettyPrint,
   isTieBreak,
-  checkCondition
+  checkCondition,
+  incrementGamePoint,
+  incrementGameCount,
+  checkMatchFinishedStatus,
+  pipe
 };
 //exported isTieBreak and checkCondition functions only for testing
