@@ -2,6 +2,8 @@
 
 Tennis Tournament Scorekeeping Program for DiUS
 
+[![Run on Repl.it](https://repl.it/badge/github/sumgwork/DiUS_Tennis_Tourney)](https://repl.it/github/sumgwork/DiUS_Tennis_Tourney)
+
 ## Challenge
 
 DiUS has presented a challenge to write a scorekeeping program for a single set tennis match. Please refer to the problem statement in the following link for more details.
