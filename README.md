@@ -2,6 +2,8 @@
 
 Tennis Tournament Scorekeeping Program for DiUS
 
+[![Run on Repl.it](https://repl.it/badge/github/sumgwork/DiUS_Tennis_Tourney)](https://repl.it/github/sumgwork/DiUS_Tennis_Tourney)
+
 ## Challenge
 
 DiUS has presented a challenge to write a scorekeeping program for a single set tennis match. Please refer to the problem statement in the following link for more details.
@@ -25,8 +27,6 @@ Clone the repo, and perform an `npm install` or `yarn` to download the dependenc
 On execution with **yarn start** or **npm start**, the sample outcome is printed on the console.
 
 ![Sample Outcome](https://i.ibb.co/4t0sr0N/sample-output.png)
-
-[![Run on Repl.it](https://repl.it/badge/github/sumgwork/DiUS_Tennis_Tourney)](https://repl.it/github/sumgwork/DiUS_Tennis_Tourney)
 
 ## Tech Stack
 
