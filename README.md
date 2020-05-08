@@ -1,4 +1,4 @@
-# DiUS Tennis Tourney
+# Node Tennis Tourney
 
 Tennis Tournament Scorekeeping Program for DiUS
 
